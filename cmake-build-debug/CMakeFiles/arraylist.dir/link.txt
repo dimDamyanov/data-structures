@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/arraylist.dir/main.cpp.o -o arraylist 
