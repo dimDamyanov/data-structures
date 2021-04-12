@@ -83,12 +83,8 @@ void ArrayList<T>::insert(int index, T &e) {
         expand();
     if (!(index >= 0 && index <= size()))
         throw std::runtime_error("IndexError");
-    for (int i = size() - 1; i >= index; i--) {
-        /*T *new_obj_ptr = new T;
-        *new_obj_ptr = *(data[i]);
-        data[i + 1] = new_obj_ptr;*/
+    for (int i = size() - 1; i >= index; i--)
         data[i+1] = data[i];
-    }
 
     T *new_obj_ptr = new T;
     *new_obj_ptr = e;
