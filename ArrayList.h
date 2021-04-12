@@ -84,9 +84,10 @@ void ArrayList<T>::insert(int index, T &e) {
     if (!(index >= 0 && index <= size()))
         throw std::runtime_error("IndexError");
     for (int i = size() - 1; i >= index; i--) {
-        T *new_obj_ptr = new T;
+        /*T *new_obj_ptr = new T;
         *new_obj_ptr = *(data[i]);
-        data[i + 1] = new_obj_ptr;
+        data[i + 1] = new_obj_ptr;*/
+        data[i+1] = data[i];
     }
 
     T *new_obj_ptr = new T;
@@ -99,11 +100,9 @@ template<class T>
 void ArrayList<T>::remove(int index) {
     if (!isValidIndex(index))
         throw std::runtime_error("IndexError");
-    for (int i = index + 1; i < size(); i++) {
-        T *new_obj_ptr = new T;
-        *new_obj_ptr = *(data[i]);
-        data[i - 1] = new_obj_ptr;
-    }
+    for (int i = index + 1; i < size(); i++)
+        data[i-1]=data[i];
+
     data[count--] = nullptr;
 }
 
@@ -134,11 +133,8 @@ template<class T>
 void ArrayList<T>::expand() {
     listSize *= 2;
     T **new_data = new T*[listSize];
-    for (int i = 0; i < size(); i++) {
-        T *new_obj_ptr = new T;
-        *new_obj_ptr = *(data[i]);
-        new_data[i] = new_obj_ptr;
-    }
+    for (int i = 0; i < size(); i++)
+        new_data[i] = data[i];
 
     delete[] data;
     data = new_data;
@@ -148,4 +144,3 @@ template<class T>
 bool ArrayList<T>::isValidIndex(int index) {
     return (index >= 0 && index < size());
 }
-
