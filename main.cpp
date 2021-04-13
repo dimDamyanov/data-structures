@@ -3,9 +3,9 @@
 
 
 int main() {
-    int a = 44;
+    int a = 45;
     ArrayList<int> arrayList;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 100; i++) {
         arrayList.push_back(i);
     }
     arrayList.insert(4, a);
