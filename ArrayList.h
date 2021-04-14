@@ -25,6 +25,9 @@ public:
 
     inline int size() { return count; }
 
+    template<typename type>
+    friend std::ostream& operator<<(std::ostream& os, ArrayList<type>& arrayList);
+
 private:
     int listSize;
     int count;
@@ -139,4 +142,15 @@ void ArrayList<T>::expand() {
 template<class T>
 bool ArrayList<T>::isValidIndex(int index) {
     return (index >= 0 && index < size());
+}
+
+template<typename type>
+std::ostream& operator<<(std::ostream& os, ArrayList<type>& arrayList) {
+    os << "[";
+    for (int i = 0; i < arrayList.size(); i++) {
+        os << *arrayList.get(i) << (i < (arrayList.size() - 1) ? ", " : "");
+    }
+    os << "]";
+
+    return os;
 }
